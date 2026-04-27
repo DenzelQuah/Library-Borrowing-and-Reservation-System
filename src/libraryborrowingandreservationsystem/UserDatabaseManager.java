@@ -11,16 +11,23 @@ package libraryborrowingandreservationsystem;
  */
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class UserDatabaseManager {
-
-    // DESIGN PATTERN: Uses the Singleton connection instead of creating its own
     private Connection myConn;
 
     public UserDatabaseManager() {
-        this.myConn = DatabaseConnection.getInstance().getConnection();
+        try {
+            String url = "jdbc:mysql://localhost:3306/library_db";
+            String user = "root";
+            String pass = "";
+            myConn = DriverManager.getConnection(url, user, pass);
+        } catch (Exception e) {
+            System.out.println(">> Database Connection Failed for Users!");
+            e.printStackTrace();
+        }
     }
 
     // Save a Librarian to the database
@@ -33,6 +40,7 @@ public class UserDatabaseManager {
             pstmt.setString(3, lib.getEmail());
             pstmt.setString(4, lib.getPassword());
             pstmt.setString(5, lib.getStaffID());
+            
             return pstmt.executeUpdate() > 0;
         } catch (Exception e) {
             System.out.println("Error saving Librarian. ID might already exist.");
@@ -49,6 +57,7 @@ public class UserDatabaseManager {
             pstmt.setString(2, student.getName());
             pstmt.setString(3, student.getEmail());
             pstmt.setString(4, student.getPassword());
+            
             return pstmt.executeUpdate() > 0;
         } catch (Exception e) {
             System.out.println("Error saving Student. ID might already exist.");
@@ -70,7 +79,7 @@ public class UserDatabaseManager {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
 
-                // POLYMORPHISM: Returns different subclass objects based on userType
+                // Reconstruct the specific user object based on their database type
                 if ("Librarian".equals(type)) {
                     String staffID = rs.getString("staffID");
                     return new Librarian(userID, name, email, password, staffID);
@@ -82,25 +91,5 @@ public class UserDatabaseManager {
             e.printStackTrace();
         }
         return null; // Returns null if ID/Password don't match
-    }
-
-    public String generateUserID(int type) {
-        String prefix = (type == 1) ? "STAFF-" : "STU-";
-        String userType = (type == 1) ? "Librarian" : "Student";
-        String sql = "SELECT COUNT(*) FROM Users WHERE userType = ?";
-
-        try {
-            PreparedStatement pstmt = myConn.prepareStatement(sql);
-            pstmt.setString(1, userType);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                int nextNum = rs.getInt(1) + 1;
-                return prefix + String.format("%03d", nextNum);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return prefix + System.currentTimeMillis(); // Safe fallback
     }
 }

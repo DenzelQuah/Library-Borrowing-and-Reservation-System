@@ -4,6 +4,10 @@
  */
 package libraryborrowingandreservationsystem;
 
+/**
+ *
+ * @author Acer
+ */
 public class Book {
     private String bookID;
     private String title;
@@ -19,20 +23,32 @@ public class Book {
     }
 
     // Getters
-    public String getBookID() { return bookID; }
-    public String getTitle() { return title; }
-    public String getGenre() { return genre; }
-    public String getStatus() { return status; }
+    public String getBookID() {
+        return bookID; 
+    }
+    
+    public String getTitle() {
+        return title; 
+    }
+    
+    
+    public String getGenre() {
+        return genre; 
+    }
+    
+    // UML Method: getStatus()
+    public String getStatus() { 
+        return status; 
+    }
 
-    // Setters (ADDED: was missing setBookID, setTitle, setGenre)
-    public void setBookID(String bookID) { this.bookID = bookID; }
-    public void setTitle(String title) { this.title = title; }
-    public void setGenre(String genre) { this.genre = genre; }
-    public void setStatus(String newStatus) { this.status = newStatus; }
+    // UML Method: setStatus(newStatus)
+    public void setStatus(String newStatus) { 
+        this.status = newStatus; 
+    }
 
     // UML Method: displayDetails()
     public void displayDetails() {
-        System.out.println("Book ID: " + bookID + " | Title: " + title +
+        System.out.println("Book ID: " + bookID + " | Title: " + title + 
                            " | Genre: " + genre + " | Status: " + status);
     }
 }

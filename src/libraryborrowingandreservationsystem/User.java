@@ -4,6 +4,10 @@
  */
 package libraryborrowingandreservationsystem;
 
+/**
+ *
+ * @author Acer
+ */
 public abstract class User {
     private String userID;
     private String name;
@@ -36,7 +40,6 @@ public abstract class User {
         return this.password.equals(inputPassword);
     }
 
-    // POLYMORPHISM: logout() is overridden in subclasses
     public void logout() {
         System.out.println(this.name + " has successfully logged out.");
     }
