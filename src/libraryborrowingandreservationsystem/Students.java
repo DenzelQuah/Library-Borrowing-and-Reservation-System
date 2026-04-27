@@ -4,7 +4,7 @@
  */
 package libraryborrowingandreservationsystem;
 
-public class Students extends User {
+public class Students extends User implements Searchable{
 
     // ADDED: UML fields that were missing from original code
     private int borrowLimit;
@@ -31,6 +31,7 @@ public class Students extends User {
     }
 
     // UML Method: searchCatalog()
+    @Override
     public void searchCatalog(BookDatabaseManager dbManager) {
         dbManager.searchBook();
     }
