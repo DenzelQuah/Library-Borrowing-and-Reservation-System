@@ -4,6 +4,9 @@
  */
 package libraryborrowingandreservationsystem;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Acer
@@ -15,7 +18,27 @@ public class LibrarianDashboard extends javax.swing.JFrame {
      */
     public LibrarianDashboard() {
         initComponents();
+        loadBooksIntoTable();
     }
+    
+    
+    private void loadBooksIntoTable() {
+    // 1. Get the table model
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    
+    // 2. Clear existing rows and set columns
+    model.setRowCount(0); 
+    model.setColumnIdentifiers(new String[]{"Book ID", "Title", "Genre", "Status"});
+
+    // 3. Fetch data (Assuming BookDatabaseManager has a method returning a list of books)
+    BookDatabaseManager dbManager = new BookDatabaseManager();
+    ArrayList<Book> books = dbManager.getAllBooks(); // You may need to create this method
+
+    // 4. Populate rows
+    for (Book b : books) {
+        model.addRow(new Object[]{b.getBookID(), b.getTitle(), b.getGenre(), b.getStatus()});
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +49,541 @@ public class LibrarianDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("University's Library System");
+
+        jToggleButton1.setText("LOGOUT");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jButton1.setText("SEARCH");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "BookID", "Book Title", "Genre", "Status"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jButton3.setText("Add New Book");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Process Borrow");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Process Return");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jButton2.setText("Update Book");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jButton6.setText("Delete Book");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jToggleButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton5))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(jButton2)
+                                .addGap(48, 48, 48)
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 19, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToggleButton1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton6))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // 1. Get the search text
+        String keyword = jTextField1.getText().trim();
+        
+        // 2. If the user clicks search with an empty box, reload all books
+        if (keyword.isEmpty()) {
+            loadBooksIntoTable(); 
+            return;
+        }
+
+        // 3. Clear the current table
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); 
+
+        // 4. Fetch the filtered data
+        BookDatabaseManager dbManager = new BookDatabaseManager();
+        ArrayList<Book> searchResults = dbManager.getSearchedBooks(keyword);
+
+        // 5. Populate the table with the new results
+        for (Book b : searchResults) {
+            model.addRow(new Object[]{b.getBookID(), b.getTitle(), b.getGenre(), b.getStatus()});
+        }
+        
+        // 6. Give feedback if nothing was found
+        if (searchResults.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No books found matching: '" + keyword + "'", "Search Results", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            loadBooksIntoTable(); // Optionally reload everything so the table isn't completely empty
+        }
+    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+            
+        jButton1ActionPerformed(evt);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+         // Show input dialog to get title and genre
+    javax.swing.JTextField titleField = new javax.swing.JTextField();
+    javax.swing.JTextField genreField = new javax.swing.JTextField();
+
+    Object[] fields = {
+        "Book Title:", titleField,
+        "Genre:", genreField
+    };
+
+    int option = javax.swing.JOptionPane.showConfirmDialog(
+        this, fields, "Add New Book", javax.swing.JOptionPane.OK_CANCEL_OPTION
+    );
+
+    if (option == javax.swing.JOptionPane.OK_OPTION) {
+        String title = titleField.getText().trim();
+        String genre = genreField.getText().trim();
+
+        if (title.isEmpty() || genre.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Title and Genre cannot be empty.", "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        BookDatabaseManager dbManager = new BookDatabaseManager();
+        String newID = dbManager.generateBookID();
+        Book newBook = new Book(newID, title, genre, "Available");
+
+        dbManager.insertBookIfNotExists(newBook);
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Book added successfully!\nID: " + newID, "Success",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        loadBooksIntoTable(); // Refresh table
+    }
+        // TODO add your handling code here: Add New Book
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        
+        LoginFrame login = new LoginFrame();
+        login.setVisible(true);
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    javax.swing.JTextField bookIDField = new javax.swing.JTextField();
+    javax.swing.JTextField studentIDField = new javax.swing.JTextField();
+
+    Object[] fields = {
+        "Book ID to Borrow:", bookIDField,
+        "Student User ID:", studentIDField
+    };
+
+    int option = javax.swing.JOptionPane.showConfirmDialog(
+        this, fields, "Process Borrow", javax.swing.JOptionPane.OK_CANCEL_OPTION
+    );
+
+    if (option == javax.swing.JOptionPane.OK_OPTION) {
+        String bookID = bookIDField.getText().trim();
+        String studentID = studentIDField.getText().trim();
+
+        if (bookID.isEmpty() || studentID.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Book ID and Student ID cannot be empty.", "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            java.sql.Connection conn = DatabaseConnection.getInstance().getConnection();
+
+            // ✅ Step 1: Validate Book ID exists
+            java.sql.PreparedStatement checkBook = conn.prepareStatement(
+                "SELECT status FROM Book WHERE bookID = ?"
+            );
+            checkBook.setString(1, bookID);
+            java.sql.ResultSet bookRs = checkBook.executeQuery();
+
+            if (!bookRs.next()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "Book ID \"" + bookID + "\" not found in the system.\nPlease enter a valid Book ID.",
+                    "Invalid Book ID", javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // ✅ Step 2: Validate Book is Available
+            String bookStatus = bookRs.getString("status");
+            if (!bookStatus.equals("Available")) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "Book \"" + bookID + "\" is currently \"" + bookStatus + "\" and cannot be borrowed.",
+                    "Book Unavailable", javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // ✅ Step 3: Validate Student ID exists
+            // Try Students table directly — avoids role column naming guesswork
+            java.sql.PreparedStatement checkStudent = conn.prepareStatement(
+                 "SELECT userID FROM users WHERE userID = ? AND userType = 'Student'"
+            );
+            checkStudent.setString(1, studentID);
+            java.sql.ResultSet studentRs = checkStudent.executeQuery();
+
+            if (!studentRs.next()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "Student ID \"" + studentID + "\" not found in the system.\n" +
+                    "Please enter a valid registered Student ID.",
+                    "Invalid Student ID", javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // ✅ Step 4: Make sure student doesn't already have this book borrowed
+            java.sql.PreparedStatement checkDuplicate = conn.prepareStatement(
+                "SELECT transID FROM Transactions WHERE bookID = ? AND userID = ?"
+            );
+            checkDuplicate.setString(1, bookID);
+            checkDuplicate.setString(2, studentID);
+            java.sql.ResultSet dupRs = checkDuplicate.executeQuery();
+
+            if (dupRs.next()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                    "This student has already borrowed this book and hasn't returned it yet.",
+                    "Duplicate Borrow", javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "A database error occurred:\n" + e.getMessage(),
+                "Database Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // ✅ All checks passed — process borrow
+        BookDatabaseManager dbManager = new BookDatabaseManager();
+        dbManager.processBorrow(bookID, studentID);
+
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Borrow processed successfully!\n" +
+            "Book ID  : " + bookID + "\n" +
+            "Student ID: " + studentID + "\n" +
+            "Due Date  : " + java.time.LocalDate.now().plusMonths(1),
+            "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        loadBooksIntoTable();
+    }
+
+    // TODO add your handling code here: Process Borrow
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        
+    javax.swing.JTextField bookIDField = new javax.swing.JTextField();
+
+    Object[] fields = {
+        "Book ID to Return:", bookIDField
+    };
+
+    int option = javax.swing.JOptionPane.showConfirmDialog(
+        this, fields, "Process Return", javax.swing.JOptionPane.OK_CANCEL_OPTION
+    );
+
+    if (option != javax.swing.JOptionPane.OK_OPTION) return;
+
+    String bookID = bookIDField.getText().trim();
+
+    if (bookID.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Book ID cannot be empty.", "Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Get return date from user
+    String returnDateStr = javax.swing.JOptionPane.showInputDialog(
+        this,
+        "Enter Return Date (YYYY-MM-DD):\n(Leave blank to use today's date)",
+        java.time.LocalDate.now().toString()
+    );
+
+    if (returnDateStr == null) return; // User cancelled
+
+    returnDateStr = returnDateStr.trim().isEmpty()
+        ? java.time.LocalDate.now().toString()
+        : returnDateStr.trim();
+
+    try {
+        java.time.LocalDate returnDate = java.time.LocalDate.parse(returnDateStr);
+        java.sql.Connection conn = DatabaseConnection.getInstance().getConnection();
+
+        // Step 1: Check if there is an active transaction for this book
+        java.sql.PreparedStatement getTxn = conn.prepareStatement(
+            "SELECT * FROM Transactions WHERE bookID = ?"
+        );
+        getTxn.setString(1, bookID);
+        java.sql.ResultSet rs = getTxn.executeQuery();
+
+        if (!rs.next()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "No active borrow transaction found for Book ID: " + bookID,
+                "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Step 2: Calculate fine
+        java.time.LocalDate dueDate = rs.getDate("dueDate").toLocalDate();
+        String fineMsg;
+        if (returnDate.isAfter(dueDate)) {
+            long daysLate = java.time.temporal.ChronoUnit.DAYS.between(dueDate, returnDate);
+            fineMsg = "\n⚠ Book is LATE by " + daysLate + " day(s).\nPenalty: RM " + (daysLate * 1.0);
+        } else {
+            fineMsg = "\n✔ Returned on time. No fines.";
+        }
+
+        // Step 3: Delete transaction record
+        java.sql.PreparedStatement delTxn = conn.prepareStatement(
+            "DELETE FROM Transactions WHERE bookID = ?"
+        );
+        delTxn.setString(1, bookID);
+        delTxn.executeUpdate();
+
+        // Step 4: Set book status back to Available
+        java.sql.PreparedStatement updateBook = conn.prepareStatement(
+            "UPDATE Book SET status = 'Available' WHERE bookID = ?"
+        );
+        updateBook.setString(1, bookID);
+        updateBook.executeUpdate();
+
+        // Step 5: Show success message with fine info
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Return processed for Book ID: " + bookID + fineMsg,
+            "Return Successful", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        loadBooksIntoTable();
+
+    } catch (java.time.format.DateTimeParseException e) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Invalid date format. Please use YYYY-MM-DD.", "Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        e.printStackTrace();
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "An error occurred during return processing.", "Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+        // TODO add your handling code here: Process Return
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Please select a book from the table to edit.", "No Selection",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    String bookID    = jTable1.getValueAt(selectedRow, 0).toString();
+    String curTitle  = jTable1.getValueAt(selectedRow, 1).toString();
+    String curGenre  = jTable1.getValueAt(selectedRow, 2).toString();
+    String curStatus = jTable1.getValueAt(selectedRow, 3).toString();
+
+    javax.swing.JTextField titleField  = new javax.swing.JTextField(curTitle);
+    javax.swing.JTextField genreField  = new javax.swing.JTextField(curGenre);
+    String[] statuses = {"Available", "Borrowed", "Reserved"};
+    javax.swing.JComboBox<String> statusBox = new javax.swing.JComboBox<>(statuses);
+    statusBox.setSelectedItem(curStatus);
+
+    Object[] fields = {
+        "Title:",  titleField,
+        "Genre:",  genreField,
+        "Status:", statusBox
+    };
+
+    int option = javax.swing.JOptionPane.showConfirmDialog(
+        this, fields, "Edit Book: " + bookID, javax.swing.JOptionPane.OK_CANCEL_OPTION
+    );
+
+    if (option == javax.swing.JOptionPane.OK_OPTION) {
+        String newTitle  = titleField.getText().trim();
+        String newGenre  = genreField.getText().trim();
+        String newStatus = statusBox.getSelectedItem().toString();
+
+        if (newTitle.isEmpty() || newGenre.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Title and Genre cannot be empty.", "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        BookDatabaseManager dbManager = new BookDatabaseManager();
+        dbManager.updateBook(bookID, newTitle, newGenre, newStatus); // See note below
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Book updated successfully.", "Updated",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        loadBooksIntoTable();
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+         int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Please select a book from the table to delete.", "No Selection",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    String bookID = jTable1.getValueAt(selectedRow, 0).toString();
+    String bookTitle = jTable1.getValueAt(selectedRow, 1).toString();
+
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+        "Are you sure you want to delete:\n\"" + bookTitle + "\" (" + bookID + ")?",
+        "Confirm Delete", javax.swing.JOptionPane.YES_NO_OPTION,
+        javax.swing.JOptionPane.WARNING_MESSAGE);
+
+    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+        BookDatabaseManager dbManager = new BookDatabaseManager();
+        dbManager.deleteBook(bookID); // See note below — add this overload
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Book deleted successfully.", "Deleted",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        loadBooksIntoTable();
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +621,17 @@ public class LibrarianDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

@@ -397,4 +397,30 @@ public class BookDatabaseManager {
             e.printStackTrace();
         }
     }
+    
+    public void deleteBook(String id) {
+    String sql = "DELETE FROM Book WHERE bookID=?";
+    try {
+        PreparedStatement pstmt = myConn.prepareStatement(sql);
+        pstmt.setString(1, id);
+        pstmt.executeUpdate();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+    
+    // GUI-friendly updateBook (takes all fields as parameters)
+public void updateBook(String bookID, String title, String genre, String status) {
+    String sql = "UPDATE Book SET title=?, genre=?, status=? WHERE bookID=?";
+    try {
+        PreparedStatement pstmt = myConn.prepareStatement(sql);
+        pstmt.setString(1, title);
+        pstmt.setString(2, genre);
+        pstmt.setString(3, status);
+        pstmt.setString(4, bookID);
+        pstmt.executeUpdate();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 }
