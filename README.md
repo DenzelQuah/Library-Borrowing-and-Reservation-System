@@ -70,6 +70,19 @@ String pass = ""; // Change this if your MySQL has a password
 6. Run `LoginFrame.java` for the **GUI version**.
 
 ---
+## To get the JAR
+
+1. Navigate to the MySQL Connector/J Download Page at dev.mysql.com/downloads/connector/j/.
+
+2. Select Platform Independent from the "Operating System" dropdown menu.
+
+3. Download the ZIP Archive (you do not need to log in or sign up; just click "No thanks, just start my download").
+
+4. Extract the downloaded ZIP file to a folder on your computer.
+
+5. Open the extracted folder to locate the JAR file, which will be named something like mysql-connector-j-8.x.x.jar.
+
+6. Return to NetBeans and follow your path:  Right-click project → Properties → Libraries → Add JAR/Folder, then select that specific JAR file.
 
 ## 📁 Project Structure
 
