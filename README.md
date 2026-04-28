@@ -66,6 +66,7 @@ String pass = ""; // Change this if your MySQL has a password
 2. Open the project in **Apache NetBeans**.
 3. Add the **MySQL Connector/J** JAR to your project libraries:
    - Right-click project → Properties → Libraries → Add JAR/Folder
+**Make sure added JAR files should be (.jar)
 4. Make sure your **MySQL server is running**.
 5. Run `LibraryBorrowingandReservationSystem.java` for the **console version**, or
 6. Run `LoginFrame.java` for the **GUI version**.
