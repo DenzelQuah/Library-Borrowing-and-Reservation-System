@@ -39,7 +39,8 @@ Before running this project, make sure you have the following installed:
 1. Open **phpMyAdmin** or any MySQL client.
 2. Create a new database:
    ```sql
-   CREATE DATABASE library_db;
+   CREATE DATABASE library_db; 
+[Alternative way]: Copy the code from the DATABASE Query.md
   
    ```
 3. Select the database and run the following SQL to create the required tables:
